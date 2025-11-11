@@ -72,8 +72,20 @@ coverage: test
 	@echo "Coverage report generated: $(COV_HTML_DIR)/coverage.html"
 
 
+# --- Documentation ---
+docs:
+	@mkdir -p $(DOCS_HTML_DIR)
+ifneq ("$(wildcard Doxyfile)","")
+	@echo "Generating Doxygen documentation..."
+	Doxygen Doxyfile
+	@echo "Documentation generated under: $(DOCS_HTML_DIR)"
+else
+	@echo "Error: No Doxyfile found in the current directory."
+endif
+
+
 # Clean
 clean:
 	rm -rf $(OUT_DIR) $(HTML_DIR) *.gcno *.gcda *.gcov
 
-.PHONY: all clean test coverage
+.PHONY: all clean test coverage docs
