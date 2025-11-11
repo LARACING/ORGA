@@ -235,6 +235,134 @@ make coverage # Generate coverage report
 
 In short, **Make** simplifies project building, testing, and maintenance by automating compilation and linking based on file changes.
 
+## Doxygen
+
+**Doxygen** is a documentation generation tool for **C**, **C++**, and other languages.  
+It parses source code and specially formatted comments to create structured documentation in **HTML**, **LaTeX**, or **man** formats.
+
+Doxygen helps maintain **up-to-date technical documentation** directly alongside your codebase, ensuring consistency between implementation and documentation.
+
+---
+
+### Purpose
+
+In this project, Doxygen is used to:
+
+- Automatically generate documentation for functions, structs, and macros from annotated comments.  
+- Create browsable **HTML** documentation for developers.  
+- Visualize dependencies and call relationships.  
+- Enforce a unified documentation style across the team.  
+- Integrate documentation generation into CI/CD pipelines.
+
+---
+
+### Doxyfile Configuration
+
+Doxygen is controlled through a configuration file named `Doxyfile`, located in the project root.
+
+To create a new one (if not already present), run:
+
+```bash
+doxygen -g
+```
+
+Then edit the generated file to match the project’s layout.  
+A minimal configuration might look like this:
+
+```bash
+PROJECT_NAME           = "LaEracing C Project"
+OUTPUT_DIRECTORY       = docs/doxygen
+INPUT                  = src include
+RECURSIVE              = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+WARN_IF_UNDOCUMENTED   = YES
+```
+
+This setup will generate HTML documentation under `docs/doxygen/`.
+
+---
+
+### Doxywizard
+
+**Doxywizard** is a graphical interface for Doxygen that allows editing and running documentation generation without manually modifying the `Doxyfile`.  
+It is installed alongside Doxygen and provides an intuitive way to configure and visualize output.  
+You can find official Doxywizard documentation here:  
+👉 [https://www.doxygen.nl/manual/doxywizard_usage.html](https://www.doxygen.nl/manual/doxywizard_usage.html)
+
+---
+
+### Writing Doxygen Comments
+
+Doxygen supports several comment styles.  
+Common patterns include:
+
+#### File Header Example
+
+```c
+/**
+ * @file motor_controller.c
+ * @brief Implements motor control logic and safety mechanisms.
+ * @date 2025-11-09
+ * @version 1.0
+ */
+```
+
+#### Function Documentation Example
+
+```c
+/**
+ * @brief Initializes the motor controller.
+ *
+ * Sets up PWM channels and performs a self-check.
+ *
+ * @param[in] config Pointer to the configuration structure.
+ * @return `0` on success, non-zero error code otherwise.
+ */
+int motor_init(const MotorConfig* config);
+```
+
+#### Struct Example
+
+```c
+/**
+ * @struct MotorConfig
+ * @brief Holds configuration parameters for the motor controller.
+ */
+typedef struct {
+    int max_speed;
+    int min_speed;
+} MotorConfig;
+```
+
+---
+
+### Generating Documentation
+
+You can generate documentation either from the terminal or via Doxywizard.
+
+#### Using Terminal
+
+```bash
+doxygen Doxyfile
+```
+
+Output will be located at:
+
+```bash
+docs/doxygen/html/index.html
+```
+
+---
+
+### Summary
+
+- **Doxygen** converts annotated code comments into readable documentation.  
+- **Doxywizard** provides a GUI for easier configuration and generation.  
+- Documentation is generated under `docs/doxygen/` and can be published automatically via **GitHub Pages** or **CI/CD**.
+
 ## Installation
 
 ## Windows
@@ -269,7 +397,7 @@ pacman -V
 
 You should see output similar to:
 
-```
+```bash
 Pacman v6.1.0 - libalpm v14.1.0
 ```
 
