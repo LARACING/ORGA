@@ -19,7 +19,6 @@ This ensures consistent building, testing, formatting, and documentation across 
     - [Folder Structure](#folder-structure)
     - [Config Files](#config-files)
     - [Notes](#notes)
-  - [Formatting and Style](#formatting-and-style)
   - [Compiler and Flags](#compiler-and-flags)
     - [Compiler](#compiler)
     - [Compiler Flags](#compiler-flags)
@@ -70,7 +69,6 @@ This ensures consistent building, testing, formatting, and documentation across 
 | **gcc** | GNU Compiler Collection — compiles C source code into executables. |
 | **make** | Automates builds and handles dependency tracking and incremental compilation. |
 | **clang-format** | Formats all C source files according to a consistent style guide. |
-| **clang-tidy** | Static analysis tool that detects potential bugs, style violations, and unsafe patterns. |
 | **gdb** | GNU Debugger — allows step-through debugging, breakpoints, and variable inspection. |
 
 ### Testing
@@ -105,7 +103,6 @@ root/
 |------|----------|
 | **makefile** | Defines build targets, compiler flags, and project dependencies. |
 | **.clang-format** | Enforces a consistent code style across all contributors. |
-| **.clang-tidy** | Performs static analysis and style checks on the source code. |
 | **.gitignore** | Specifies which files and directories should be ignored by Git (e.g., `build/`, `.gcda`, `.o`). |
 | **Doxyfile** | Configuration file for [Doxygen](https://www.doxygen.nl/) — used to generate reference documentation from source code comments. |
 | **README.md** | Describes the project, setup instructions, and usage overview. |
@@ -120,10 +117,6 @@ root/
 - `html/` should also never be committed as it is beeing built dynamically in the pipeline.
 - Documentation generated from **Doxygen** will usually be placed under `docs/` and can be auto-generated using a Makefile target like `make docs`.
 - Example implementations and documentation should remain in their dedicated directories for clarity and consistency.
-
-## Formatting and Style
-
-> !TODO
 
 ## Compiler and Flags
 
