@@ -78,11 +78,20 @@ docs:
 	@mkdir -p $(DOCS_HTML_DIR)
 ifneq ("$(wildcard Doxyfile)","")
 	@echo "Generating Doxygen documentation..."
-	Doxygen Doxyfile
-	@echo "Documentation generated under: $(DOCS_HTML_DIR)"
+	@if command -v doxygen >/dev/null 2>&1; then \
+		doxygen Doxyfile; \
+	elif command -v Doxygen >/dev/null 2>&1; then \
+		Doxygen Doxyfile; \
+	else \
+		echo "Error: doxygen not found in PATH."; \
+		exit 127; \
+	fi
 else
 	@echo "Error: No Doxyfile found in the current directory."
 endif
+
+
+
 
 
 # --- Formatting ---

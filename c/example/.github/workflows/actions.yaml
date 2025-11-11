@@ -1,0 +1,80 @@
+name: C Example CI • Build • Test • Coverage • Docs • Pages
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # ===============================================================
+  #  1. Build, Test, Coverage, Docs (runs on all branches)
+  # ===============================================================
+  build-test-cov-docs:
+    name: Build & Test & Coverage & Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            gcc \
+            make \
+            gcovr \
+            doxygen \
+            clang-format \
+            clang-tidy
+
+      - name: Clean previous build
+        run: make clean
+
+      - name: Run unit tests
+        run: make test
+
+      - name: Generate coverage report
+        run: make coverage
+
+      - name: Generate documentation
+        run: make docs
+
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: html
+          path: c/example/html/
+
+  # ===============================================================
+  #  2. Deploy GitHub Pages (only on main)
+  # ===============================================================
+  deploy-pages:
+    name: Deploy Documentation to GitHub Pages
+    needs: build-test-cov-docs
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download HTML artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html
+          path: html/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
