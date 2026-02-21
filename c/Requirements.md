@@ -490,3 +490,23 @@ After installation, confirm everything works:
 gcc --version
 make --version
 ```
+
+---
+
+## MacOS
+
+1. Install brew packet manager
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+- Follow post-install actions (add brew to path etc.)
+
+<br><br>
+
+2. Install packets via brew
+```sh
+brew install gcc gdb
+brew install clang-format
+brew install doxygen
+brew install make cmake
+```
