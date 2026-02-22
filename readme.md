@@ -14,5 +14,5 @@ If your question is not addressed in this repository, please reach out via Teleg
     - [Windows](./c/docs/setup/windows.md)
     - [Linux](./c/docs/setup/linux.md)
     - [macOS](./c/docs/setup/macos.md)
-- [Writing](./writing/readme.md)
-- [Git](./git/readme.md)
+- [Writing](./writing/)
+  - [Writing Developement Requirements for Embedded System](./writing/write_developement_requirements.md)
