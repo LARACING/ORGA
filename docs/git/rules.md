@@ -1,11 +1,5 @@
 # Rules
 
-## Table of contents
-
-- [Rules](#rules)
-  - [Table of contents](#table-of-contents)
-  - [Important Rules](#important-rules)
-
 ## Important Rules
 
 - Never commit directly on `main`

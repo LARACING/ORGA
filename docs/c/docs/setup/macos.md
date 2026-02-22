@@ -1,12 +1,5 @@
 # MacOS
 
-## Table of Contents
-
-- [MacOS](#macos)
-  - [Table of Contents](#table-of-contents)
-  - [Installing brew](#installing-brew)
-  - [Installing tools](#installing-tools)
-
 ## Installing brew
 
 ```sh

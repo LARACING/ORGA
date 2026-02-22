@@ -2,26 +2,6 @@
 
 Quick reference for daily workflow.
 
-## Table of Contents
-
-- [Cheatsheet](#cheatsheet)
-  - [Table of Contents](#table-of-contents)
-  - [Clone (SSH)](#clone-ssh)
-  - [Start Working on a Sub-Issue](#start-working-on-a-sub-issue)
-  - [Check Status](#check-status)
-  - [Stage Changes](#stage-changes)
-  - [Commit (Signed Automatically)](#commit-signed-automatically)
-  - [Update Branch Before Push](#update-branch-before-push)
-  - [Push Branch](#push-branch)
-  - [Fix Last Commit (Before Push)](#fix-last-commit-before-push)
-  - [Interactive Rebase (Local Cleanup)](#interactive-rebase-local-cleanup)
-  - [Revert a Commit (Safe on Shared Branches)](#revert-a-commit-safe-on-shared-branches)
-  - [Resolve Conflict](#resolve-conflict)
-  - [Delete Branch After Merge](#delete-branch-after-merge)
-  - [View History](#view-history)
-  - [Check Remotes](#check-remotes)
-  - [Coverage Reminder](#coverage-reminder)
-
 ## Clone (SSH)
 
 ``` bash

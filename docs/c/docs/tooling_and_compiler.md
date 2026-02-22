@@ -1,33 +1,5 @@
 ## Tooling and Compiler
 
-## Table of Contents
-- [Tooling and Compiler](#tooling-and-compiler)
-- [Table of Contents](#table-of-contents)
-- [Tooling](#tooling)
-  - [Core](#core)
-  - [Testing](#testing)
-- [Compiler and Flags](#compiler-and-flags)
-  - [Compiler](#compiler)
-  - [Compiler Flags](#compiler-flags)
-  - [Coverage and Testing Flags](#coverage-and-testing-flags)
-- [Testing and Coverage](#testing-and-coverage)
-  - [Coverage](#coverage)
-- [Make](#make)
-  - [How It Works](#how-it-works)
-  - [Common Targets](#common-targets)
-  - [Why Use Make](#why-use-make)
-- [Doxygen](#doxygen)
-  - [Purpose](#purpose)
-  - [Doxyfile Configuration](#doxyfile-configuration)
-  - [Doxywizard](#doxywizard)
-  - [Writing Doxygen Comments](#writing-doxygen-comments)
-    - [File Header Example](#file-header-example)
-    - [Function Documentation Example](#function-documentation-example)
-    - [Struct Example](#struct-example)
-  - [Generating Documentation](#generating-documentation)
-    - [Using Terminal](#using-terminal)
-  - [Summary](#summary)
-
 ## Tooling
 
 ### Core

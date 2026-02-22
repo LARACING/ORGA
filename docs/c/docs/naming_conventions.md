@@ -1,24 +1,5 @@
 # Naming Convention
 
-## Table of Contents
-
-- [Naming Convention](#naming-convention)
-  - [Table of Contents](#table-of-contents)
-  - [General Rules](#general-rules)
-  - [Variables](#variables)
-  - [Functions](#functions)
-  - [Typedefs](#typedefs)
-  - [Struct Members](#struct-members)
-  - [Enums](#enums)
-  - [Macros](#macros)
-  - [Constants](#constants)
-  - [Include Guards](#include-guards)
-  - [Include Order](#include-order)
-  - [File Naming](#file-naming)
-  - [Pointer Style](#pointer-style)
-  - [Visibility Rules](#visibility-rules)
-  - [Booleans](#booleans)
-
 ## General Rules
 
 - English names shall be used.

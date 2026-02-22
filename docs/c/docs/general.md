@@ -1,15 +1,5 @@
 # General
 
-## Table of Contents
-
-- [General](#general)
-  - [Table of Contents](#table-of-contents)
-  - [C Standard](#c-standard)
-  - [Project Structure](#project-structure)
-    - [Folder Structure](#folder-structure)
-    - [Config Files](#config-files)
-    - [Notes](#notes)
-
 ## C Standard
 
 - **Standard:** `C99`

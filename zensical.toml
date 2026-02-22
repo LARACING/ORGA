@@ -1,0 +1,87 @@
+[project]
+site_name = "Software Developement Documentation"
+site_description = "Engineering guidelines, C standards, Git workflow and development documentation."
+site_author = "Moritz Kuttesch"
+
+# Set this when deploying (GitHub Pages example)
+# site_url = "https://yourusername.github.io/ORGA/"
+
+copyright = """
+Copyright © 2026 LA-eRacing
+"""
+
+# Explicit navigation (clean + structured)
+nav = [
+  { "Home" = "readme.md" },
+
+  { "C Guidelines" = [
+      { "General" = "c/docs/general.md" },
+      { "Naming Conventions" = "c/docs/naming_conventions.md" },
+      { "Tooling & Compiler" = "c/docs/tooling_and_compiler.md" },
+      { "Setup" = [
+          { "Linux" = "c/docs/setup/linux.md" },
+          { "macOS" = "c/docs/setup/macos.md" },
+          { "Windows" = "c/docs/setup/windows.md" }
+      ]}
+  ]},
+
+  { "Git" = [
+      { "Basics" = "git/basics.md" },
+      { "Setup" = "git/setup.md"},
+      { "Branch Model" = "git/branch_model.md" },
+      { "Developement Workflow" = "git/workflow.md" },
+      { "Rules" = "git/rules.md" },
+      { "Cheatsheet" = "git/cheatsheet.md" },
+      { "Troubleshooting" = "git/troubleshooting.md" }
+  ]},
+
+  { "Writing Formal Documentation" = [
+      {"Important" = "writing/important.md"},
+      {"General Writing Guidelines" = "writing/general_writing_guidelines.md"},
+      {"Normative Language" = "writing/normative_language.md"},
+      {"Document Structure" = [
+        {"Introduction" = "writing/document_structure/introduction.md"},
+        {"System Overview" = "writing/document_structure/system_overview.md"},
+        {"Functional Requirements" = "writing/document_structure/functional_requirements.md"},
+        {"Non-Functional Requirements" = "writing/document_structure/non_functional_requirements.md"},
+        {"Hardware Interface Requirements" = "writing/document_structure/hardware_interface_requirements.md"},
+        {"Public C API Specifications" = "writing/document_structure/public_c_api_spec.md"},
+        {"Constraints" = "writing/document_structure/constraints.md"},
+        {"Verification Strategy" = "writing/document_structure/verification_strategy.md"},
+      ]},
+      {"Common Mistakes" = "writing/common_mistakes.md"},
+      {"C API Documentation" = "writing/c_api_documentation.md"},
+      {"Verification Strategy" = "writing/verification_strategy.md"}
+  ]}
+]
+
+# -----------------------------------------------------------------------------
+# Theme
+# -----------------------------------------------------------------------------
+
+[project.theme]
+language = "en"
+
+features = [
+    "content.code.copy",
+    "content.code.annotate",
+    "navigation.footer",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.path",
+    "navigation.sections",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight"
+]
+
+# Light / Dark mode toggle
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Light mode"

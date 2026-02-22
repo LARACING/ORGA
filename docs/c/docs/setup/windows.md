@@ -1,15 +1,5 @@
 # Windows
 
-## Table of Contents
-
-- [Windows](#windows)
-  - [Table of Contents](#table-of-contents)
-  - [MSYS](#msys)
-    - [Installing MSYS](#installing-msys)
-    - [Adding to PATH](#adding-to-path)
-    - [Installing the Tooling](#installing-the-tooling)
-  - [WSL (Windows Subsystem for Linux)](#wsl-windows-subsystem-for-linux)
-
 For **gcovr** to work, you have to have installed **Python** on your system. To see the installation process, please refer to [requirements.md](../python/requirements.md).
 
 ## MSYS
