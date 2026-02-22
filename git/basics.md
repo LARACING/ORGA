@@ -1,24 +1,26 @@
 # Basics
 
 ## Table of Contents
+
 - [Basics](#basics)
   - [Table of Contents](#table-of-contents)
   - [What is git?](#what-is-git)
   - [Initial Configuration](#initial-configuration)
-    - [Set identity](#set-identity)
-    - [Set default branch to main](#set-default-branch-to-main)
-    - [Recommended](#recommended)
-  - [SSH Authentication (GitHub)](#ssh-authentication-github)
-    - [Generate SSH Key](#generate-ssh-key)
-      - [Generate SSH Key](#generate-ssh-key-1)
+    - [Git Setup](#git-setup)
+      - [Set identity](#set-identity)
+      - [Set default branch to main](#set-default-branch-to-main)
+      - [Recommended](#recommended)
+    - [SSH Authentication (GitHub)](#ssh-authentication-github)
+      - [Generate SSH Key](#generate-ssh-key)
       - [Activate for your OS](#activate-for-your-os)
-    - [Add SSH Key to GitHub](#add-ssh-key-to-github)
-      - [Copy public key](#copy-public-key)
-      - [Test Connection](#test-connection)
-    - [Add Signing Key to GitHub](#add-signing-key-to-github)
+      - [Add SSH Key to GitHub](#add-ssh-key-to-github)
+        - [Copy public key](#copy-public-key)
+        - [Test Connection](#test-connection)
+    - [SSH Signing (GitHub)](#ssh-signing-github)
       - [Enable SSH Signing in Git](#enable-ssh-signing-in-git)
-      - [Add Signing Key to GitHub](#add-signing-key-to-github-1)
+      - [Add Signing Key to GitHub](#add-signing-key-to-github)
       - [Test Signed Commit](#test-signed-commit)
+  - [Git Basics](#git-basics)
 
 ## What is git?
 
@@ -36,7 +38,9 @@ Core concepts:
 
 For the configuration please use the Git Bash if you have not setup your PATH yet.
 
-### Set identity
+### Git Setup
+
+#### Set identity
 
 ```bash
 git config --global user.name "Your Name"
@@ -45,7 +49,7 @@ git config --global user.email "your@email.com"
 
 > For Usage with GitHub it is essential to have the same email as your GitHub profile.
 
-### Set default branch to main
+#### Set default branch to main
 
 Since Git 3.0 `main` is the default branch instead of the previous `master`.
 
@@ -53,18 +57,17 @@ Since Git 3.0 `main` is the default branch instead of the previous `master`.
 git config --global init.defaultBranch main
 ```
 
-### Recommended
+#### Recommended
 
 ```bash
 git config --global pull.rebase false
 git config --global core.editor "code --wait"
 ```
 
-## SSH Authentication (GitHub)
+### SSH Authentication (GitHub)
 
 Do **not** use HTTPS + passwords. Use SSH.
 
-### Generate SSH Key
 #### Generate SSH Key
 
 ```bash
@@ -87,9 +90,9 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-### Add SSH Key to GitHub
+#### Add SSH Key to GitHub
 
-#### Copy public key
+##### Copy public key
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
@@ -102,7 +105,7 @@ On GitHub:
 3. New SSH key
 4. Paste Key
 
-#### Test Connection
+##### Test Connection
 
 ```bash
 ssh -T git@github.com
@@ -114,11 +117,13 @@ Expected:
 Hi <username>! You've successfully authenticated...
 ```
 
-### Add Signing Key to GitHub
+### SSH Signing (GitHub)
+
 On our Repos commit signing, so you have to enable it.
 This ensures commits are cryptographically verifiied on GitHub.
 
 #### Enable SSH Signing in Git
+
 ```bash
 git config --global gpg.format ssh
 git config --global user.signingkey ~/.ssh/id_ed25519.pub
@@ -126,7 +131,9 @@ git config --global commit.gpgsign true
 ```
 
 #### Add Signing Key to GitHub
+
 In GitHub:
+
 1. Settings
 2. SSH and GPG Keys
 3. New SSH Key
@@ -134,6 +141,7 @@ In GitHub:
 5. Paste the same public Key
 
 #### Test Signed Commit
+
 In a tmp directory initialize a git repo.
 
 ```bash
@@ -157,3 +165,7 @@ Expected output should be:
 ```bash
 Good "git" signature for <username>...
 ```
+
+## Git Basics
+
+currently just look at [git.presentation](https://git-presentation-alpha.vercel.app/)
