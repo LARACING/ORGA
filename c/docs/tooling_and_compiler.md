@@ -1,64 +1,32 @@
-# Formal C Development
-
-## Overview
-
-This document defines the **C toolchain**, **standards**, and **workflows** for formal development at **LaEracing**.  
-This ensures consistent building, testing, formatting, and documentation across all developers and environments.
+## Tooling and Compiler
 
 ## Table of Contents
-
-- [Formal C Development](#formal-c-development)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Standards and Tools](#standards-and-tools)
-    - [C Standard](#c-standard)
-  - [Tooling](#tooling)
-    - [Core](#core)
-    - [Testing](#testing)
-  - [Project Structure](#project-structure)
-    - [Folder Structure](#folder-structure)
-    - [Config Files](#config-files)
-    - [Notes](#notes)
-  - [Compiler and Flags](#compiler-and-flags)
-    - [Compiler](#compiler)
-    - [Compiler Flags](#compiler-flags)
-    - [Coverage and Testing Flags](#coverage-and-testing-flags)
-  - [Testing and Coverage](#testing-and-coverage)
-    - [Coverage](#coverage)
-  - [Make](#make)
-    - [How It Works](#how-it-works)
-    - [Common Targets](#common-targets)
-    - [Why Use Make](#why-use-make)
-  - [Doxygen](#doxygen)
-    - [Purpose](#purpose)
-    - [Doxyfile Configuration](#doxyfile-configuration)
-    - [Doxywizard](#doxywizard)
-    - [Writing Doxygen Comments](#writing-doxygen-comments)
-      - [File Header Example](#file-header-example)
-      - [Function Documentation Example](#function-documentation-example)
-      - [Struct Example](#struct-example)
-    - [Generating Documentation](#generating-documentation)
-      - [Using Terminal](#using-terminal)
-    - [Summary](#summary)
-  - [Installation](#installation)
-  - [Windows](#windows)
-    - [MSYS](#msys)
-      - [Installing MSYS](#installing-msys)
-      - [Adding to PATH](#adding-to-path)
-      - [Installing the Tooling](#installing-the-tooling)
-    - [WSL (Windows Subsystem for Linux)](#wsl-windows-subsystem-for-linux)
-  - [Linux](#linux)
-    - [Debian/Ubuntu](#debianubuntu)
-    - [Fedora/RHEL](#fedorarhel)
-    - [Arch Linux](#arch-linux)
-
-## Standards and Tools
-
-### C Standard
-
-- **Standard:** `C99`
-- **Compatibility:** [ANSI-C](https://www.geeksforgeeks.org/c/ansi-c-c89-standard/)
-- **Compiler Flags:** [See Compiler](#compiler-and-flags)
+- [Tooling and Compiler](#tooling-and-compiler)
+- [Table of Contents](#table-of-contents)
+- [Tooling](#tooling)
+  - [Core](#core)
+  - [Testing](#testing)
+- [Compiler and Flags](#compiler-and-flags)
+  - [Compiler](#compiler)
+  - [Compiler Flags](#compiler-flags)
+  - [Coverage and Testing Flags](#coverage-and-testing-flags)
+- [Testing and Coverage](#testing-and-coverage)
+  - [Coverage](#coverage)
+- [Make](#make)
+  - [How It Works](#how-it-works)
+  - [Common Targets](#common-targets)
+  - [Why Use Make](#why-use-make)
+- [Doxygen](#doxygen)
+  - [Purpose](#purpose)
+  - [Doxyfile Configuration](#doxyfile-configuration)
+  - [Doxywizard](#doxywizard)
+  - [Writing Doxygen Comments](#writing-doxygen-comments)
+    - [File Header Example](#file-header-example)
+    - [Function Documentation Example](#function-documentation-example)
+    - [Struct Example](#struct-example)
+  - [Generating Documentation](#generating-documentation)
+    - [Using Terminal](#using-terminal)
+  - [Summary](#summary)
 
 ## Tooling
 
@@ -77,46 +45,6 @@ This ensures consistent building, testing, formatting, and documentation across 
 |------|----------|
 | **Unity** | Lightweight unit testing framework for C. Provides easy test creation and integration with Make and coverage tools. |
 | **gcovr** | Collects and summarizes `gcov` output into clean console, HTML, or XML reports. |
-
-## Project Structure
-
-A typical C project will consist of multiple directories and, in our case, some configuration files.
-
-### Folder Structure
-
-The structure looks like this:
-
-```bash
-root/
-├── src/      # All source files and private headers
-├── include/  # Public headers containing the external API
-├── test/     # Unit tests and test runners
-├── html/     # folder for compiled docs and coverage report
-├── build/    # Build artifacts and temporary files
-├── example/  # Reference implementations or examples
-├── docs/     # Project documentation
-```
-
-### Config Files
-
-| File | Purpose |
-|------|----------|
-| **makefile** | Defines build targets, compiler flags, and project dependencies. |
-| **.clang-format** | Enforces a consistent code style across all contributors. |
-| **.gitignore** | Specifies which files and directories should be ignored by Git (e.g., `build/`, `.gcda`, `.o`). |
-| **Doxyfile** | Configuration file for [Doxygen](https://www.doxygen.nl/) — used to generate reference documentation from source code comments. |
-| **README.md** | Describes the project, setup instructions, and usage overview. |
-
----
-
-### Notes
-
-- All internal logic and private headers reside in `src/`.
-- All headers that form the public API should be placed under `include/`.
-- Build artifacts (object files, coverage data, binaries) should always go into `build/` and not be committed.
-- `html/` should also never be committed as it is beeing built dynamically in the pipeline.
-- Documentation generated from **Doxygen** will usually be placed under `docs/` and can be auto-generated using a Makefile target like `make docs`.
-- Example implementations and documentation should remain in their dedicated directories for clarity and consistency.
 
 ## Compiler and Flags
 
@@ -346,7 +274,7 @@ int motor_init(const MotorConfig* config);
  * @struct MotorConfig
  * @brief Holds configuration parameters for the motor controller.
  */
-typedef struct {
+typedef struct MotorConfig{
     int max_speed;
     int min_speed;
 } MotorConfig;
@@ -377,136 +305,3 @@ docs/doxygen/html/index.html
 - **Doxygen** converts annotated code comments into readable documentation.  
 - **Doxywizard** provides a GUI for easier configuration and generation.  
 - Documentation is generated under `docs/doxygen/` and can be published automatically via **GitHub Pages** or **CI/CD**.
-
-## Installation
-
-## Windows
-
-For **gcovr** to work, you have to have installed **Python** on your system. To see the installation process, please refer to [requirements.md](../python/requirements.md).
-
-### MSYS
-
-#### Installing MSYS
-
-If you do not have **MSYS** installed yet, download it from [msys2.org](https://www.msys2.org/).  
-After installation, you will have several bash environments available. You can use those directly, but we recommend **adding the environment to your PATH**, so you can run `gcc`, `make`, or `pacman` directly from your regular **Windows Terminal** or **PowerShell**.
-
-We use the **`UCRT64`** environment because it works best with **Windows 10 and newer**, thanks to Microsoft’s modern **Universal C Runtime (UCRT)** toolchain.  
-This environment offers better compatibility, stability, and Unicode support than the older **MSVCRT**-based ones.
-
----
-
-#### Adding to PATH
-
-To add the **UCRT64** environment to your PATH permanently, open an **administrator PowerShell** window and run:
-
-```powershell
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\msys64\ucrt64\bin;C:\msys64\usr\bin", "Machine")
-```
-
-After that, restart PowerShell or Command Prompt, and verify that **MSYS2** is correctly available by checking `pacman`:
-
-```bash
-pacman -V
-```
-
-You should see output similar to:
-
-```bash
-Pacman v6.1.0 - libalpm v14.1.0
-```
-
-If this works, your **MSYS** environment is set up correctly.  
-If not, ensure your PATH variable is correct and that **MSYS2** is installed under `C:\msys64\`.
-
----
-
-#### Installing the Tooling
-
-Once **MSYS2** is installed, you’ll need to install the essential build tools.  
-In an **MSYS2 UCRT64** terminal or your normal terminal if added to PATH, run:
-
-```bash
-pacman -S --needed --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-make mingw-w64-ucrt-x86_64-clang-tools-extra mingw-w64-ucrt-x86_64-clang
-```
-
----
-
-### WSL (Windows Subsystem for Linux)
-
-If you prefer a fully native Linux environment on Windows, **WSL** is a great option.
-
-**Installation steps:**
-
-1. Enable **WSL (Windows Subsystem for Linux)** from Windows Features or run:
-
-   ```powershell
-   wsl --install
-   ```
-
-2. Install **Ubuntu** (recommended) or another Linux distribution from the Microsoft Store.
-3. Open your **WSL** terminal and install the required build tools:
-
-   ```bash
-   sudo apt update
-   sudo apt install build-essential git -y
-   ```
-
-4. Verify your setup:
-
-   ```bash
-   gcc --version
-   make --version
-   ```
-
----
-
-## Linux
-
-All major Linux distributions already include **GCC** and **Make** in their repositories.
-
-### Debian/Ubuntu
-
-```bash
-sudo apt update
-sudo apt install build-essential git -y
-```
-
-### Fedora/RHEL
-
-```bash
-sudo dnf install gcc make git
-```
-
-### Arch Linux
-
-```bash
-sudo pacman -S base-devel git
-```
-
-After installation, confirm everything works:
-
-```bash
-gcc --version
-make --version
-```
-
----
-
-## MacOS
-
-1. Install brew packet manager
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-- Follow post-install actions (add brew to path etc.)
-
-<br><br>
-
-2. Install packets via brew
-```sh
-brew install gcc gdb
-brew install clang-format
-brew install doxygen
-brew install make cmake
-```
