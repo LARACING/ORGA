@@ -1,98 +1,46 @@
-name: C Example CI • Build • Test • Coverage • Docs • Pages
+name: LA-eRacing Software Docs
 
 on:
   push:
-    branches:
-      - '**'
+    branches: ["**"]
   pull_request:
-    branches:
-      - '**'
+    branches: ["**"]
 
 permissions:
-  contents: write  # Required to push to gh-pages
+  contents: write
   id-token: write
 
 jobs:
-  # ===============================================================
-  #  1. Build, Test, Coverage, Docs (runs on all branches)
-  # ===============================================================
-  build-test-cov-docs:
-    name: Build & Test & Coverage & Docs
+  build-docs:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: c/example
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+
+      - run: uv sync
+      - run: uv run build
+
+      - uses: actions/upload-artifact@v4
         with:
-          fetch-depth: 0
+          name: site
+          path: site/
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            build-essential \
-            gcc \
-            make \
-            gcovr \
-            doxygen \
-            clang-format \
-            clang-tidy \
-            git
-
-      - name: Clean previous build
-        run: make clean
-
-      - name: Run unit tests
-        run: make test
-
-      - name: Generate coverage report
-        run: make coverage
-
-      - name: Generate documentation
-        run: make docs
-
-      - name: Fix Pages Folder
-        run: |
-          mv html/cov/coverage.html html/cov/index.html
-          rm -rf html/doc/latex
-          mv html/doc/html/* html/doc/
-          rmdir html/doc/html || true
-
-      - name: Upload HTML artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: html
-          path: c/example/html/
-
-  # ===============================================================
-  #  2. Deploy Docs to gh-pages (only on main)
-  # ===============================================================
   deploy-pages:
-    name: Deploy Documentation to gh-pages branch
-    needs: build-test-cov-docs
+    needs: build-docs
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
+          name: site
+          path: site/
 
-      - name: Download HTML artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: html
-          path: html/
-
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: html
+          publish_dir: site
           publish_branch: gh-pages
           force_orphan: true

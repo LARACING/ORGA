@@ -1,0 +1,17 @@
+[project]
+name = "orga"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "zensical>=0.0.23",
+]
+[project.scripts]
+dev   = "scripts.tasks:dev"
+build = "scripts.tasks:build"
+[tool.uv]
+package = true
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]

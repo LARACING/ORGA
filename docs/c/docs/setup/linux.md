@@ -1,14 +1,6 @@
 
 # Linux
 
-## Table of Contents
-
-- [Linux](#linux)
-  - [Table of Contents](#table-of-contents)
-  - [Debian/Ubuntu](#debianubuntu)
-  - [Fedora/RHEL](#fedorarhel)
-  - [Arch Linux](#arch-linux)
-
 All major Linux distributions already include **GCC** and **Make** in their repositories.
 
 ## Debian/Ubuntu

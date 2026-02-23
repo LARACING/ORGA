@@ -2,28 +2,6 @@
 
 > If you are unsure just contact someone via e.g. Telegram before changing anything.
 
-## Table of Contents
-
-- [Troubleshooting](#troubleshooting)
-  - [Table of Contents](#table-of-contents)
-  - [Undoing Local Changes](#undoing-local-changes)
-    - [Discard Unstaged Changes](#discard-unstaged-changes)
-    - [Unstage Files](#unstage-files)
-    - [Amend Last Commit (Before Push)](#amend-last-commit-before-push)
-  - [Fixing a Wrong Commit (Not Yet Pushed)](#fixing-a-wrong-commit-not-yet-pushed)
-    - [Soft Reset (Keep Changes)](#soft-reset-keep-changes)
-    - [Mixed Reset (Keep Changes Unstaged)](#mixed-reset-keep-changes-unstaged)
-    - [Hard Reset (Dangerous)](#hard-reset-dangerous)
-  - [Fixing a Pushed Commit (Feature Branch)](#fixing-a-pushed-commit-feature-branch)
-  - [Never Rewrite `main`](#never-rewrite-main)
-  - [Revert a Commit (Safe for Shared Branches)](#revert-a-commit-safe-for-shared-branches)
-  - [Handling Conflicts](#handling-conflicts)
-  - [Detached HEAD](#detached-head)
-  - [Lost Commits Recovery](#lost-commits-recovery)
-  - [Accidentally Committed to Wrong Branch](#accidentally-committed-to-wrong-branch)
-  - [CI Fails After Merge](#ci-fails-after-merge)
-  - [When to Contact Admin](#when-to-contact-admin)
-
 ## Undoing Local Changes
 
 ### Discard Unstaged Changes
