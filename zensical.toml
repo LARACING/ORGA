@@ -29,6 +29,7 @@ nav = [
   { "Git" = [
       { "Home" = "git/home.md" },
       { "Basics" = "git/basics.md" },
+      { "Git Hooks" = "git/git_hooks.md"},
       { "Setup" = "git/setup.md"},
       { "Branch Model" = "git/branch_model.md" },
       { "Developement Workflow" = "git/workflow.md" },
